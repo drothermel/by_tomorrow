@@ -1,3 +1,44 @@
+# ------ Ipynb Ignore --------
+# https://github.com/jupyter/notebook/blob/main/.gitignore
+
+*.bundle.*
+lib/
+node_modules/
+*.egg-info/
+.ipynb_checkpoints
+*.tsbuildinfo
+
+# ------ Hydra Ignore --------
+outputs/
+
+# ------ Vim Gitignore --------
+# https://github.com/github/gitignore/blob/main/Global/Vim.gitignore
+
+# Swap
+[._]*.s[a-v][a-z]
+!*.svg  # comment out if you don't need vector files
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# Session
+Session.vim
+Sessionx.vim
+
+# Temporary
+.netrwhist
+*~
+# Auto-generated tag files
+tags
+# Persistent undo
+[._]*.un~
+
+#---------------------------------------------
+
+
+# ------ Autocreated Python Gitignore --------
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
