@@ -15,7 +15,10 @@ build-backend = "hatchling.build"
 
 [tool.rye]
 managed = true
-dev-dependencies = []
+dev-dependencies = [
+    "jupyterlab>=4.2.5",
+    "jupyterlab-vim>=4.1.4",
+]
 
 [tool.hatch.metadata]
 allow-direct-references = true
