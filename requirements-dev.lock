@@ -10,6 +10,9 @@
 #   universal: false
 
 -e file:.
+antlr4-python3-runtime==4.9.3
+    # via hydra-core
+    # via omegaconf
 anyio==4.6.0
     # via httpx
     # via jupyter-server
@@ -26,6 +29,7 @@ asttokens==2.4.1
 async-lru==2.0.4
     # via jupyterlab
 attrs==24.2.0
+    # via jsonlines
     # via jsonschema
     # via referencing
 babel==2.16.0
@@ -34,6 +38,11 @@ beautifulsoup4==4.12.3
     # via nbconvert
 bleach==6.1.0
     # via nbconvert
+boto3==1.35.34
+    # via dr-util
+botocore==1.35.34
+    # via boto3
+    # via s3transfer
 certifi==2024.8.30
     # via httpcore
     # via httpx
@@ -50,6 +59,8 @@ decorator==5.1.1
     # via ipython
 defusedxml==0.7.1
     # via nbconvert
+dr-util @ git+https://github.com/drothermel/dr_util.git@3e2e19855da6eec4df464d237e9733aada6b93f0
+    # via bytom
 executing==2.1.0
     # via stack-data
 fastjsonschema==2.20.0
@@ -62,6 +73,8 @@ httpcore==1.0.6
     # via httpx
 httpx==0.27.2
     # via jupyterlab
+hydra-core==1.3.0
+    # via dr-util
 idna==3.10
     # via anyio
     # via httpx
@@ -82,8 +95,13 @@ jinja2==3.1.4
     # via jupyterlab
     # via jupyterlab-server
     # via nbconvert
+jmespath==1.0.1
+    # via boto3
+    # via botocore
 json5==0.9.25
     # via jupyterlab-server
+jsonlines==4.0.0
+    # via dr-util
 jsonpointer==3.0.0
     # via jsonschema
 jsonschema==4.23.0
@@ -122,6 +140,8 @@ jupyterlab-pygments==0.3.0
 jupyterlab-server==2.27.3
     # via jupyterlab
 jupyterlab-vim==4.1.4
+loguru==0.7.2
+    # via dr-util
 markupsafe==2.1.5
     # via jinja2
     # via nbconvert
@@ -142,9 +162,15 @@ nest-asyncio==1.6.0
     # via ipykernel
 notebook-shim==0.2.4
     # via jupyterlab
+numpy==2.1.2
+    # via dr-util
+omegaconf==2.3.0
+    # via dr-util
+    # via hydra-core
 overrides==7.7.0
     # via jupyter-server
 packaging==24.1
+    # via hydra-core
     # via ipykernel
     # via jupyter-server
     # via jupyterlab
@@ -180,11 +206,13 @@ pygments==2.18.0
 pytest==8.3.3
 python-dateutil==2.9.0.post0
     # via arrow
+    # via botocore
     # via jupyter-client
 python-json-logger==2.0.7
     # via jupyter-events
 pyyaml==6.0.2
     # via jupyter-events
+    # via omegaconf
 pyzmq==26.2.0
     # via ipykernel
     # via jupyter-client
@@ -193,7 +221,8 @@ referencing==0.35.1
     # via jsonschema
     # via jsonschema-specifications
     # via jupyter-events
-requests==2.32.3
+requests==2.31.0
+    # via dr-util
     # via jupyterlab-server
 rfc3339-validator==0.1.4
     # via jsonschema
@@ -204,6 +233,10 @@ rfc3986-validator==0.1.1
 rpds-py==0.20.0
     # via jsonschema
     # via referencing
+s3transfer==0.10.2
+    # via boto3
+schema==0.7.7
+    # via dr-util
 send2trash==1.8.3
     # via jupyter-server
 setuptools==75.1.0
@@ -249,6 +282,7 @@ types-python-dateutil==2.9.0.20241003
 uri-template==1.3.0
     # via jsonschema
 urllib3==2.2.3
+    # via botocore
     # via requests
 wcwidth==0.2.13
     # via prompt-toolkit
