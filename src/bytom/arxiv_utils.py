@@ -1,4 +1,4 @@
-import io
+from enum import Enum
 import feedparser
 
 API_URL = "https://export.arxiv.org/api/query"
@@ -27,7 +27,8 @@ def build_author_query(author, kwargs={}):
         "sortOrder": "descending",
         **kwargs,
     }
-    return "&".join
+    kwarg_strs = [f"{k}={v}" for k, v in all_kwargs.items()]
+    return "&".join([query_str, *kwarg_strs])
 
 
 def query_api(query_str):
