@@ -13,7 +13,9 @@ class QUERY_TYPES(str, Enum):
     def __str__(self) -> str:
         return str.__str__(self)
 
+
 # ---- Query Utils ---- #
+
 
 def build_id_query(id_list, kwargs={}):
     query_str = ",".join(id_list)
@@ -37,3 +39,21 @@ def build_author_query(author, kwargs={}):
 def query_api(query_str):
     parsed_feed = feedparser.parse(query_str)
     return parsed_feed["entries"]
+
+
+# ---- Parsing Utils ---- #
+
+
+def parse_paper_entry(p_feed):
+    pdf_link = None
+    for ldict in p_feed["links"]:
+        if ldict.get("title", "") == "pdf":
+            pdf_link = ldict["href"]
+    return {
+        "title": p_feed["title"],
+        "abstract": p_feed["summary"],
+        "published": p_feed["published"],
+        "updated": p_feed["updated"],
+        "authors": [a["name"] for a in p_feed["authors"]],
+        "pdf_link": pdf_link,
+    }
