@@ -1,0 +1,20 @@
+# Directories
+data_dir: /Users/daniellerothermel/drotherm/data/
+
+raw_pdf_dir: ${data_dir}raw_pdfs/
+parsed_pdf_dir: ${data_dir}parsed_pdfs/
+metadata_dir: ${data_dir}parsed_pdfs/
+author_data_dir: ${data_dir}author_data/
+author_summaries_dir: ${author_data_dir}summaries/
+
+# Re File names
+author_info_file: ${author_data_dir}manual_profiles.json
+
+# Patterns
+prof_pattern: (?P<professor_name>[\w_]+)
+file_type_pattern: (?P<file_type>\w+)
+version_pattern: v(?P<version>\d+)
+
+author_summary_file_pattern: ${prof_pattern}\.${file_type_pattern}\.${version_pattern}
+
+
