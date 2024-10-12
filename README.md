@@ -4,7 +4,7 @@ A project supporting researchers in doing thorough preparation on a short time h
 
 Currently supports making author profiles in markdown, which can either be consumed directly (eg in a jupyter notebook) or uploaded to [NotebookLM](https://notebooklm.google.com/) to prompt/query for summary info or other details.
 
-## Author Profiles
+## Using Author Profiles
 
 ### Setup Repo
 This repo relies on rye as a package manager in place of pip.  You can install rye by following [these quickstart instructions](https://notebooklm.google.com/).  Then you should be able to just clone the repo and ask rye to sync.
