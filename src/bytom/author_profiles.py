@@ -1,6 +1,7 @@
 import logging
 import re
 from pathlib import Path
+import io
 
 import bytom.arxiv_utils as xu
 
@@ -31,3 +32,19 @@ def list_authors_with_summaries(cfg, version=None):
         rmatch = re.match(cfg.author_summary_file_pattern, fn.stem)
         profs.add(rmatch.group("professor_name").replace("_", " ").title())
     return list(profs)
+
+
+# --- Profile Dumping Functions --- #
+
+
+def format_response_abstract_to_markdown(response):
+    buff = io.StringIO()
+
+    buff.write(f"# **Title:** {response['title']}\n\n")
+    buff.write(f"**Publish Date:** {response['published']}\n\n")
+    buff.write(f"**First Author:** {response['authors'][0]}\n\n")
+    buff.write(f"**Last Author:** {response['authors'][-1]}\n\n")
+    if len(response["authors"]) > 2:
+        buff.write(f"**Middle Authors:** {', '.join(response['authors'][1:-1])}\n\n")
+    buff.write(f"**Abstract:** {response['abstract']}\n")
+    return buff.getvalue()

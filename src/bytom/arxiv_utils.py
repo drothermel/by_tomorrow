@@ -1,4 +1,5 @@
 from enum import Enum
+from datetime import datetime
 import feedparser
 
 # ---- Constants ---- #
@@ -49,11 +50,17 @@ def parse_paper_entry(p_feed):
     for ldict in p_feed["links"]:
         if ldict.get("title", "") == "pdf":
             pdf_link = ldict["href"]
+    old_date_format = "%Y-%m-%dT%H:%M:%SZ"
+    new_date_format = "%Y-%m-%d"
+    published = datetime.strptime(p_feed["published"], old_date_format)
+    updated = datetime.strptime(p_feed["updated"], old_date_format)
+    abstract_list = p_feed["summary"].split("\n")
+    abstract = " ".join(abstract_list)
     return {
         "title": p_feed["title"],
-        "abstract": p_feed["summary"],
-        "published": p_feed["published"],
-        "updated": p_feed["updated"],
+        "abstract": abstract,
+        "published": published.strftime(new_date_format),
+        "updated": updated.strftime(new_date_format),
         "authors": [a["name"] for a in p_feed["authors"]],
         "pdf_link": pdf_link,
     }

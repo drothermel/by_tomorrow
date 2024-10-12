@@ -8,7 +8,7 @@ author_data_dir: ${data_dir}author_data/
 author_summaries_dir: ${author_data_dir}summaries/
 
 # Re File names
-author_info: ${author_data_dir}manual_profiles.json
+author_info_file: ${author_data_dir}manual_profiles.json
 
 # Patterns
 prof_pattern: (?P<professor_name>[\w_]+)
