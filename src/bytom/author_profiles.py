@@ -68,16 +68,29 @@ def format_response_abstract_to_markdown(response):
 
 
 def make_author_page(
-    cfg, author, responses=None, author_info=None, max_papers=100, max_years=20
+    cfg,
+    author,
+    responses=None,
+    author_info=None,
+    max_papers=100,
+    max_years=20,
+    first_last_only=False,
 ):
     if author_info is None:
         author_infos = fu.load_file(cfg.author_info_file)
         author_info = author_infos[author]
 
-    if responses is None:
+    if first_last_only:
+        if responses is None:
+            responses = get_author_papers(
+                author, kwargs={"max_results": max_papers * 5}
+            )
+        responses = [
+            r for r in responses if author in [r["authors"][0], r["authors"][-1]]
+        ]
+    elif responses is None:
         responses = get_author_papers(author, kwargs={"max_results": max_papers})
-    else:
-        responses = responses[:max_papers]
+    responses = responses[:max_papers]
 
     buff = io.StringIO()
     buff.write(f"# Research Summary for **{author}**\n\n")
@@ -93,7 +106,14 @@ def make_author_page(
 
 
 def write_author_page(
-    cfg, author, version, responses=None, author_info=None, max_papers=100, max_years=20
+    cfg,
+    author,
+    version,
+    responses=None,
+    author_info=None,
+    max_papers=100,
+    max_years=20,
+    first_last_only=False,
 ):
     author_page = make_author_page(
         cfg,
@@ -102,10 +122,12 @@ def write_author_page(
         author_info=author_info,
         max_papers=max_papers,
         max_years=max_years,
+        first_last_only=first_last_only,
     )
     author_str = author.lower().replace(" ", "_")
+    fl_only = ".flonly" if first_last_only else ""
     fu.dump_file(
         author_page,
         f"{cfg.author_summaries_dir}{author_str}.markdown."
-        f"v{version}.maxp{max_papers}.maxy{max_years}.txt",
+        f"v{version}.maxp{max_papers}.maxy{max_years}{fl_only}.txt",
     )
