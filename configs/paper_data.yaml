@@ -11,7 +11,7 @@ arxiv_dir: ${data_dir}arxiv/
 
 # Re File names
 author_info_file: ${author_data_dir}manual_profiles.json
-arxiv_metadata_file: ${arxiv_dir}arxiv-metadata-oai-2024-10-14.json
+arxiv_metadata_file: ${arxiv_dir}arxiv-metadata-oai-2024-10-16.json
 
 # Patterns
 prof_pattern: (?P<professor_name>[\w_]+)
